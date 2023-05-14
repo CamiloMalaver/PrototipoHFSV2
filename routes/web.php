@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\AdministradorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,5 @@ Route::get('/', function () {
 Route::get('docente/misfunciones', [DocenteController::class, 'misFuncionesView'])->name('docente-misfunciones');
 Route::get('docente/informes', [DocenteController::class, 'informesView'])->name('docente-informes');
 Route::get('docente/ajustes', [DocenteController::class, 'ajustesView'])->name('docente-ajustes');
+
+Route::get('admin/usuarios', [AdministradorController::class, 'usuariosView'])->name('administrador-usuarios');
