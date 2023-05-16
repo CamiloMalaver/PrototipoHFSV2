@@ -29,6 +29,9 @@ class Kernel extends HttpKernel
      * @var array<string, array<int, class-string|string>>
      */
     protected $middlewareGroups = [
+        'admin' => [\App\Http\Middleware\AdminRoutes::class],
+        'audit' => [\App\Http\Middleware\AuditorRoutes::class],
+        'doc' => [\App\Http\Middleware\DocenteRoutes::class],
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,

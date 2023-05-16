@@ -11,7 +11,8 @@
         <div class="login-card">
             <h1 class="login-title">HFS</h1>
             <label class="login-welcome-message">Bienvenido al sistema</label>
-            <form class="login-form" action="">
+            <form class="login-form" action="{{route('validarInicio')}}"  method="POST">
+                @csrf
                 <div class="input-container">
                     <input class="input-text" type="email" id="login-email" name="email" placeholder="Ingresa tu email" required>
                 </div>
@@ -19,7 +20,16 @@
                     <input class="input-text" type="password" id="login-password" name="password" placeholder="Ingresa tu contraseña" required>
                 </div>
                 <button class="btn btn-login" type="submit">Ingresar</button>
-            </form>            
+            </form>  
+            @if ($errors->any())
+                <div class="login-errors-container">
+                    @foreach ($errors->all() as $error)
+                    <div class="login-error-message">
+                        {{ $error }}
+                    </div>
+                    @endforeach
+                </div>
+            @endif          
         </div>
     </body>
 </html>

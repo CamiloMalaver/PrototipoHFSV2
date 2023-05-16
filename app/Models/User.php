@@ -18,8 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombres',
+        'apellidos',
+        'documento',
         'email',
+        'celular',
+        'rol_id',
+        'estado_id',
         'password',
     ];
 
@@ -41,4 +46,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rol()
+    {
+        return $this->hasOne(Rol::class, 'id', 'rol_id');
+    }
+
+    public function funcionsustantiva()
+    {
+        return $this->hasMany(FuncionSustantiva::class, 'usuario_id', 'id');
+    }
 }

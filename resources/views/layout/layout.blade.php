@@ -4,13 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        
         <title>Prototipo HFS</title>
     </head>
     <body>
         <div class="app-header">
             <div class="app-header-user-info-container">
-                <span class="user-name">Nombre Docente Emilio</span>
-                <span class="user-rol">Administrador</span>
+                <span class="user-name">{{ auth()->user()->nombres . ' ' . auth()->user()->apellidos }}</span>
+                <span class="user-rol">{{auth()->user()->rol->nombre_rol}}</span>
             </div>
         </div>
         <div class="app-content">
@@ -19,14 +20,20 @@
                     <span class="app-header-title">PROTOTIPO HFS</span>
                 </div>
                 <div class="bottom-container">
-                    <a class="flat-button" href="{{route('docente-misfunciones')}}">
+                    @if(auth()->user()->rol_id == 1)
+                    <a class="flat-button" href="{{route('administrador-usuarios')}}">
                         <img class="icon" src="{{asset('img/bulk/people.png')}}" alt="">
                         <span class="">Usuarios</span>
                     </a>
-                    <a class="flat-button" href="{{route('docente-misfunciones')}}">
+                    <a class="flat-button" href="{{route('administrador-funciones')}}">
                         <img class="icon" src="{{asset('img/bulk/autonio.png')}}" alt="">
                         <span class="">Funciones</span>
                     </a>
+                    @endif
+                    @if(auth()->user()->rol_id == 2)
+
+                    @endif
+                    @if(auth()->user()->rol_id == 3)
                     <a class="flat-button active-module" href="{{route('docente-misfunciones')}}">
                         <img class="icon" src="{{asset('img/bulk/calendartick.png')}}" alt="">
                         <span class="">Mis funciones</span>
@@ -39,6 +46,7 @@
                         <img class="icon" src="{{asset('img/bulk/candle.png')}}" alt="">
                         <span class="">Ajustes</span>
                     </a>
+                    @endif                    
                     <a class="flat-button" href="">
                         <img class="icon" src="{{asset('img/bulk/arrowleft.png')}}" alt="">
                         <span class="">Cerrar sesión</span>
