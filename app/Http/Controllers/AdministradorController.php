@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;  
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\TipoFuncion;
@@ -11,7 +10,7 @@ use App\Models\TipoFuncion;
 class AdministradorController extends Controller
 {
     public function usuariosView(){
-        $users = User::paginate(10);
+        $users = User::simplePaginate(10);
         return view('Administrador/usuarios')->with(compact('users'));
     }
     

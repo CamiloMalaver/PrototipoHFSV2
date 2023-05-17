@@ -20,7 +20,7 @@
                     <div class="actions-container">
                         @if ($user->rol_id == 2)
                         <div class="action">
-                        <a href="{{route('administrador-usuarios-asociardocente', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useradd.png')}}" alt="">
+                            <a href="{{route('administrador-usuarios-asociardocente', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useradd.png')}}" alt="">
                         </div>
                         @endif                        
                         <div class="action">

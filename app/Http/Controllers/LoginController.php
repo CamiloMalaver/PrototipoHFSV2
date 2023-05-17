@@ -22,7 +22,7 @@ class LoginController extends Controller
                     return redirect('/admin/usuarios');
                     break;
                 case 2:
-                    return redirect('/auditor');
+                    return redirect('/Auditor/docentes');
                     break;
                 case 3:
                     return redirect('/docente');

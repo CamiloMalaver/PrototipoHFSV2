@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\AuditorController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/usuarios/funcionessustantivas/nueva', [AdministradorController::class, 'nuevaFuncionSustantiva'])->name('administrador-funciones-nueva');
 });
 
-Route::get('docente/misfunciones', [DocenteController::class, 'misFuncionesView'])->name('docente-misfunciones');
-Route::get('docente/informes', [DocenteController::class, 'informesView'])->name('docente-informes');
-Route::get('docente/ajustes', [DocenteController::class, 'ajustesView'])->name('docente-ajustes');
+Route::group(['middleware' => 'audit'], function () {
+    Route::get('auditor/docentes', [AuditorController::class, 'misDocentesView'])->name('auditor-misdocentes');
+    Route::get('auditor/docentes/gestionar/{id}', [AuditorController::class, 'gestionarDocenteView'])->name('auditor-gestionar-docente');
+});
+
+Route::group(['middleware' => 'audit'], function () {
+    Route::get('docente/misfunciones', [DocenteController::class, 'misFuncionesView'])->name('docente-misfunciones');
+    Route::get('docente/informes', [DocenteController::class, 'informesView'])->name('docente-informes');
+    Route::get('docente/ajustes', [DocenteController::class, 'ajustesView'])->name('docente-ajustes');
+});
+
 

@@ -31,7 +31,14 @@
                     </a>
                     @endif
                     @if(auth()->user()->rol_id == 2)
-
+                    <a class="flat-button active-module" href="">
+                        <img class="icon" src="{{asset('img/bulk/calendartick.png')}}" alt="">
+                        <span class="">Docentes</span>
+                    </a>
+                    <a class="flat-button" href="">
+                        <img class="icon" src="{{asset('img/bulk/clipboardtext.png')}}" alt="">
+                        <span class="">Informes</span>
+                    </a>
                     @endif
                     @if(auth()->user()->rol_id == 3)
                     <a class="flat-button active-module" href="{{route('docente-misfunciones')}}">
@@ -47,7 +54,7 @@
                         <span class="">Ajustes</span>
                     </a>
                     @endif                    
-                    <a class="flat-button" href="">
+                    <a class="flat-button" href="{{route('salir')}}">
                         <img class="icon" src="{{asset('img/bulk/arrowleft.png')}}" alt="">
                         <span class="">Cerrar sesión</span>
                     </a>
