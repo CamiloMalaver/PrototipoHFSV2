@@ -9,50 +9,80 @@
             <span class="subtitle">CC {{$docente->documento}}</span>
         </div>
         <div class="right-container">
-            <form class="form-new-user" action="{{route('administrador-usuarios-asociardocente-exec')}}" method="POST">
-                @csrf
-                <input type="hidden" name="auditor_id" value="{{$docente->id}}">
-                <div class="form-row right">
-                    <a class="btn-function-action back-action" href="{{route('auditor-misdocentes')}}">Regresar</a>
-                </div>
-                <div class="form-row right">
-                    <button type="submit" class="btn-function-action">Nueva función</button>
-                </div>
-            </form>
-            @if ($errors->any())
-                <div class="login-errors-container">
-                    @foreach ($errors->all() as $error)
-                    <div class="content-error-message left">
-                        {{ $error }}
-                    </div>
-                    @endforeach
-                </div>
-            @endif
-            @if(session()->has('message'))
-                <div class="login-errors-container">
-                    <div class="content-success-message left">
-                        {{ session()->get('message') }}
-                    </div>
-                </div>
-            @endif
+            <div class="form-row right">
+                <a class="btn-function-action back-action" href="{{route('auditor-misdocentes')}}">Regresar</a>
+            </div>
+            <div class="form-row right mt-10">
+                <button class="btn-function-action primary" id="toggle_new_function_form">Nueva función</button>
+            </div>
         </div>
+    </div>
+    <div class="tab-container content-container d-none" id="form_add_function_container">
+        <form class="form-new-user" action="{{route('auditor-asignar-funcion')}}" method="POST">
+            @csrf
+            <div class="form-row new-function">
+                <input type="hidden" name="docente_id" value="{{$docente->id}}">
+                <input id="input_function_date" type="date" class="input input-form-text" name="fecha_de_funcion" placeholder="Fecha de función" required>
+                <input type="time" class="input input-form-time" name="hora_de_inicio" placeholder="Email docente" required>
+                <input type="time" class="input input-form-time" name="hora_final" placeholder="Email docente" required>
+                <div class="select-container">
+                    <div class="select">
+                        <input type="text" id="input" placeholder="Tipo de funcion" name="select_function" onfocus="this.blur();" required>
+                    </div>
+                    <div class="option-container">
+                        @foreach($tipofuncion as $funcion)
+                        <div class="option">
+                            <label>{{$funcion->nombre}}</label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="form-row right">
+                <button type="submit" class="btn-function-action">Asignar función</button>
+            </div>
+        </form>
+    </div>
+    <div class="tab-container content-container">
+        @if ($errors->any())
+        <div class="login-errors-container">
+            @foreach ($errors->all() as $error)
+            <div class="content-error-message">
+                {{ $error }}
+            </div>
+            @endforeach
+        </div>
+        @endif
+        @if(session()->has('message'))
+        <div class="login-errors-container">
+            <div class="content-success-message">
+                {{ session()->get('message') }}
+            </div>
+        </div>
+        @endif
     </div>
     <div class="tab-container content-container">
         <span class="subtitle josefin-bold">Funciones sustantivas asignadas</span>
         <div class="card-users-container">
-
-            <div class="user-card">
-                <div class="profile-icon-container">
-                    <img class="icon user-profile-pic" src="{{asset('img/bulk/autonio.png')}}" alt="">
-                </div>
-                <span class="user-full-name"></span>
-                <div class="actions-container">
-                    <div class="action">
-                        <img class="icon" src="{{asset('img/bulk/trash.png')}}" alt="">
+            @if($funciones)
+                @foreach($funciones as $func)
+                    <div class="user-card">
+                        <div class="profile-icon-container">
+                            <img class="icon user-profile-pic" src="{{asset('img/bulk/autonio.png')}}" alt="">
+                        </div>
+                        <span class="user-full-name funct-type">{{$func->tipoFuncion->nombre}}</span>
+                        <span class="user-role funct-time">{{date('h:m:s a', strtotime($func->hora_inicio))}}</span>
+                        <span class="user-role">{{date('h:m:s a', strtotime($func->hora_final))}}</span>
+                        <div class="actions-container">
+                            <div class="status-badge status{{$func->estado_id}}">
+                                <span class="text">{{$func->estado->nombre}}</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
+                @endforeach
+            @else
+                <span class="subtitle josefin-light">Aún no has registrado funciones para este docente.</span>    
+            @endif
         </div>
     </div>
 </div>

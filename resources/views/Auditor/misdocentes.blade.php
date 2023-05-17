@@ -13,7 +13,7 @@
                         <img class="icon user-profile-pic" src="{{asset('img/bulk/usersquare.png')}}" alt="">
                     </div>
                     <span class="user-full-name">{{ $docente->nombres . ' ' . $docente->apellidos }}</span>
-                    <span class="user-role">0 funciones asignadas</span>
+                    <span class="user-role">{{$docente->funcionsustantiva_count}} {{($docente->funcionsustantiva_count != 1) ? 'funciones' : 'función'}}</span>
                     <div class="actions-container">
                         <div class="action">
                             <a href="{{route('auditor-gestionar-docente', $docente->id)}}"><img class="icon" src="{{asset('img/bulk/personalcard.png')}}" alt=""></a>

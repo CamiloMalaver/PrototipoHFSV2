@@ -138,5 +138,26 @@ class DatabaseSeeder extends Seeder
             'email' => 'alinda@hfs.io',
             'password' => Hash::make('secret'),
         ]);
+
+        DB::table('tipo_funcion')->insert([
+            'nombre' => 'Asesorías',
+        ]);
+
+        DB::table('tipo_funcion')->insert([
+            'nombre' => 'Monitorías',
+        ]);
+        
+        DB::table('tipo_funcion')->insert([
+            'nombre' => 'Dirección PGI',
+        ]);
+
+        DB::table('tipo_funcion')->insert([
+            'nombre' => 'Dirección PGII',
+        ]);
+
+        DB::table('tipo_funcion')->insert([
+            'nombre' => 'Docencia',
+        ]);
+
     }
 }

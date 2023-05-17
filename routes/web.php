@@ -37,9 +37,10 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'audit'], function () {
     Route::get('auditor/docentes', [AuditorController::class, 'misDocentesView'])->name('auditor-misdocentes');
     Route::get('auditor/docentes/gestionar/{id}', [AuditorController::class, 'gestionarDocenteView'])->name('auditor-gestionar-docente');
+    Route::post('auditor/docentes/gestionar/nuevafuncion', [AuditorController::class, 'asignarFuncion'])->name('auditor-asignar-funcion');
 });
 
-Route::group(['middleware' => 'audit'], function () {
+Route::group(['middleware' => 'doc'], function () {
     Route::get('docente/misfunciones', [DocenteController::class, 'misFuncionesView'])->name('docente-misfunciones');
     Route::get('docente/informes', [DocenteController::class, 'informesView'])->name('docente-informes');
     Route::get('docente/ajustes', [DocenteController::class, 'ajustesView'])->name('docente-ajustes');
