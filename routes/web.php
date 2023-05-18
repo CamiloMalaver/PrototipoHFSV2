@@ -42,9 +42,10 @@ Route::group(['middleware' => 'audit'], function () {
 
 Route::group(['middleware' => 'doc'], function () {
     Route::get('docente/misfunciones', [DocenteController::class, 'misFuncionesView'])->name('docente-misfunciones');
+    Route::get('docente/misfunciones/detallereporte/{id}', [DocenteController::class, 'detalleReporteView'])->name('docente-detalle-reporte');
     Route::get('docente/misfunciones/reportar/{id}', [DocenteController::class, 'reportarFuncionView'])->name('docente-misfunciones-reportar');
     Route::post('docente/misfunciones/reportar/enviar', [DocenteController::class, 'reportarFuncion'])->name('docente-misfunciones-reportar-enviar');
-    
+
     Route::get('docente/informes', [DocenteController::class, 'informesView'])->name('docente-informes');
     Route::get('docente/ajustes', [DocenteController::class, 'ajustesView'])->name('docente-ajustes');
 });

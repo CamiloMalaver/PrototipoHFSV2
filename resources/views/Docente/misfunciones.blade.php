@@ -38,19 +38,19 @@
                            @endif
                            @break
                        @case(2)
-                               <a class="btn-function-action">Ver detalle</a>
+                               <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
                            @break                        
                        @case(3)
                            <a class="btn-function-action">Editar reporte</a>
                            @break
                        @case(4)
-                           <a class="btn-function-action">Ver detalle</a>
+                           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
                            @break
                        @case(5)
-                           <a class="btn-function-action">Ver detalle</a>
+                           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
                            @break
                        @case(6)
-                           <a class="btn-function-action">Ver detalle</a>
+                           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
                            @break
                     @endswitch
                 </div>
@@ -59,84 +59,52 @@
         @endforeach
     </div>
     <div class="functions-container d-none" id="docente_previous_container">
-        @foreach($funciones as $func)
-            @if(strtotime(date('Y-m-d')) > strtotime($func->fecha))
-                <div class="function-card">
-                    <div class="left-content">
-                        <span class="function-type-name">{{$func->tipofuncion->nombre}}</span>
-                        <span class="function-location">Edificio nuevo 2002</span>
-                        <span class="function-date">{{$func->fecha}}</span>
-                    </div>
-                    <div class="right-content">
-                        <div class="status-badge status{{$func->estado->id}}">
-                            <span class="text">{{$func->estado->nombre}}</span>
-                        </div>
-                        @switch($func->estado->id)
-                            @case(1)
-                                @if(date('Y-m-d') == $func->fecha)
-                                    <a class="btn-function-action">Enviar reporte</a>
-                                @endif
-                                @break
-                            @case(2)
-                                    <a class="btn-function-action">Ver detalle</a>
-                                @break                        
-                            @case(3)
-                                <a class="btn-function-action">Editar reporte</a>
-                                @break
-                            @case(4)
-                                <a class="btn-function-action">Ver detalle</a>
-                                @break
-                            @case(5)
-                                <a class="btn-function-action">Ver detalle</a>
-                                @break
-                            @case(6)
-                                <a class="btn-function-action">Ver detalle</a>
-                                @break
-                        @endswitch
-                    </div>
-                </div>
-            @endif            
-        @endforeach
+    @switch($func->estado->id)
+       @case(1)
+           @if(date('Y-m-d') == $func->fecha)
+               <a class="btn-function-action" href="{{route('docente-misfunciones-reportar', $func->id)}}">Enviar reporte</a>
+           @endif
+           @break
+       @case(2)
+               <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break                        
+       @case(3)
+           <a class="btn-function-action">Editar reporte</a>
+           @break
+       @case(4)
+           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break
+       @case(5)
+           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break
+       @case(6)
+           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break
+    @endswitch
     </div>
     <div class="functions-container d-none" id="docente_incoming_container">
-        @foreach($funciones as $func)
-            @if(strtotime(date('Y-m-d')) < strtotime($func->fecha))
-                <div class="function-card">
-                    <div class="left-content">
-                        <span class="function-type-name">{{$func->tipofuncion->nombre}}</span>
-                        <span class="function-location">Edificio nuevo 2002</span>
-                        <span class="function-date">{{$func->fecha}}</span>
-                    </div>
-                    <div class="right-content">
-                        <div class="status-badge status{{$func->estado->id}}">
-                            <span class="text">{{$func->estado->nombre}}</span>
-                        </div>
-                        @switch($func->estado->id)
-                            @case(1)
-                                @if(date('Y-m-d') == $func->fecha)
-                                    <a class="btn-function-action">Enviar reporte</a>
-                                @endif
-                                @break
-                            @case(2)
-                                    <a class="btn-function-action">Ver detalle</a>
-                                @break                        
-                            @case(3)
-                                <a class="btn-function-action">Editar reporte</a>
-                                @break
-                            @case(4)
-                                <a class="btn-function-action">Ver detalle</a>
-                                @break
-                            @case(5)
-                                <a class="btn-function-action">Ver detalle</a>
-                                @break
-                            @case(6)
-                                <a class="btn-function-action">Ver detalle</a>
-                                @break
-                        @endswitch
-                    </div>
-                </div>
-            @endif            
-        @endforeach
+    @switch($func->estado->id)
+       @case(1)
+           @if(date('Y-m-d') == $func->fecha)
+               <a class="btn-function-action" href="{{route('docente-misfunciones-reportar', $func->id)}}">Enviar reporte</a>
+           @endif
+           @break
+       @case(2)
+               <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break                        
+       @case(3)
+           <a class="btn-function-action">Editar reporte</a>
+           @break
+       @case(4)
+           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break
+       @case(5)
+           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break
+       @case(6)
+           <a class="btn-function-action" href="{{route('docente-detalle-reporte', $func->id)}}">Ver detalle</a>
+           @break
+    @endswitch
     </div>
 </div>
 @endsection

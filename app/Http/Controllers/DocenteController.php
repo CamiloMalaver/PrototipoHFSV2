@@ -16,6 +16,11 @@ class DocenteController extends Controller
         return view('Docente/misfunciones')->with(compact('funciones'));
     }
 
+    public function detalleReporteView(int $id){
+        $funcion = FuncionSustantiva::with('TipoFuncion', 'estado', 'evidencia')->find($id);
+        return view('Docente/detallereporte')->with(compact('funcion'));
+    }
+
     public function reportarFuncionView(int $id){
         $funcion = FuncionSustantiva::with('TipoFuncion')->where('id', $id)->first();
         return view('Docente/reportarfuncion')->with(compact('funcion'));
