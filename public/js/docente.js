@@ -23,4 +23,11 @@ $(document).ready(function(){
         $(this).addClass('active')
         $('#docente_incoming_container').removeClass('d-none')
     })
+
+    $("#evidencias_input").click(function(){
+        var $fileUpload = $("input[type='file']");
+        if (parseInt($fileUpload.get(0).files.length)>2){
+            
+        }
+    })
 })

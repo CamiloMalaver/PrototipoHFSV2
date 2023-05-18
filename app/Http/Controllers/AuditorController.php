@@ -26,7 +26,7 @@ class AuditorController extends Controller
         $validated = $request->validate([
             'fecha_de_funcion' => 'required|date|after:today',
             'hora_de_inicio' => 'required',
-            'hora_final' => 'required|after:function_time_init',
+            'hora_final' => 'required|after:hora_de_inicio',
             'select_function' => 'required|exists:tipo_funcion,nombre',
             'docente_id' => 'required|exists:users,id',
         ]);

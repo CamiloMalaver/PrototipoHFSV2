@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->time('hora_inicio');
             $table->time('hora_final');
+            $table->string('lugar', 80);
             $table->string('descripcion_actividad', 1000)->nullable();
             $table->string('observaciones', 500)->nullable();
             $table->string('observaciones_auditor', 500)->nullable();

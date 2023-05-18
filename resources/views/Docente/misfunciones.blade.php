@@ -3,6 +3,13 @@
 @section('module-container')
 <div class="module">
     <span class="title">Mis funciones</span>
+    @if(session()->has('message'))
+        <div class="mis-funciones-success-container">
+            <div class="content-success-message">
+                {{ session()->get('message') }}
+            </div>
+        </div>
+    @endif
     <div class="tab-container">
         <div class="divider-start"></div>
         <div class="tab active" id="docente_today_tab">Hoy</div>
@@ -24,7 +31,28 @@
                     <div class="status-badge status{{$func->estado->id}}">
                         <span class="text">{{$func->estado->nombre}}</span>
                     </div>
-                    <a class="btn-function-action">Enviar reporte</a>
+                    @switch($func->estado->id)
+                       @case(1)
+                           @if(date('Y-m-d') == $func->fecha)
+                               <a class="btn-function-action" href="{{route('docente-misfunciones-reportar', $func->id)}}">Enviar reporte</a>
+                           @endif
+                           @break
+                       @case(2)
+                               <a class="btn-function-action">Ver detalle</a>
+                           @break                        
+                       @case(3)
+                           <a class="btn-function-action">Editar reporte</a>
+                           @break
+                       @case(4)
+                           <a class="btn-function-action">Ver detalle</a>
+                           @break
+                       @case(5)
+                           <a class="btn-function-action">Ver detalle</a>
+                           @break
+                       @case(6)
+                           <a class="btn-function-action">Ver detalle</a>
+                           @break
+                    @endswitch
                 </div>
             </div>
             @endif            
@@ -43,7 +71,28 @@
                         <div class="status-badge status{{$func->estado->id}}">
                             <span class="text">{{$func->estado->nombre}}</span>
                         </div>
-                        <div class="btn-function-action">Enviar reporte</div>
+                        @switch($func->estado->id)
+                            @case(1)
+                                @if(date('Y-m-d') == $func->fecha)
+                                    <a class="btn-function-action">Enviar reporte</a>
+                                @endif
+                                @break
+                            @case(2)
+                                    <a class="btn-function-action">Ver detalle</a>
+                                @break                        
+                            @case(3)
+                                <a class="btn-function-action">Editar reporte</a>
+                                @break
+                            @case(4)
+                                <a class="btn-function-action">Ver detalle</a>
+                                @break
+                            @case(5)
+                                <a class="btn-function-action">Ver detalle</a>
+                                @break
+                            @case(6)
+                                <a class="btn-function-action">Ver detalle</a>
+                                @break
+                        @endswitch
                     </div>
                 </div>
             @endif            
@@ -62,6 +111,28 @@
                         <div class="status-badge status{{$func->estado->id}}">
                             <span class="text">{{$func->estado->nombre}}</span>
                         </div>
+                        @switch($func->estado->id)
+                            @case(1)
+                                @if(date('Y-m-d') == $func->fecha)
+                                    <a class="btn-function-action">Enviar reporte</a>
+                                @endif
+                                @break
+                            @case(2)
+                                    <a class="btn-function-action">Ver detalle</a>
+                                @break                        
+                            @case(3)
+                                <a class="btn-function-action">Editar reporte</a>
+                                @break
+                            @case(4)
+                                <a class="btn-function-action">Ver detalle</a>
+                                @break
+                            @case(5)
+                                <a class="btn-function-action">Ver detalle</a>
+                                @break
+                            @case(6)
+                                <a class="btn-function-action">Ver detalle</a>
+                                @break
+                        @endswitch
                     </div>
                 </div>
             @endif            
