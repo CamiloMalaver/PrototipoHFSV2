@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('tipo_funcion', function (Blueprint $table){
             $table->id();
             $table->string('nombre', 100);
+            
+            $table->tinyInteger('is_drop')->default(0);
 
             $table->timestamps();
         });

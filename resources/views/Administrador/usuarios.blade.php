@@ -34,7 +34,7 @@
                         @if (auth()->user()->id != $user->id)
                         <div class="tooltip">
                             <div class="action">
-                                <a href=""><img class="icon" src="{{asset('img/bulk/trash.png')}}" alt=""></a>
+                                <a href=""><img class="icon" src="{{asset('img/bulk/userminus.png')}}" alt=""></a>
                             </div>
                             <span class="tooltiptext">Inhabilitar</span>
                         </div>

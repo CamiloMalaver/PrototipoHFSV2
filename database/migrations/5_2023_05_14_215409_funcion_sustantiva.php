@@ -31,6 +31,8 @@ return new class extends Migration
             $table->unsignedBigInteger('tipo_funcion_id');
             $table->foreign('tipo_funcion_id')->references('id')->on('tipo_funcion');
 
+            $table->tinyInteger('is_drop')->default(0);
+
             $table->timestamps();
         });
     }

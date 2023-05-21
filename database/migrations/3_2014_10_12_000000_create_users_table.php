@@ -27,6 +27,8 @@ return new class extends Migration
             $table->unsignedBigInteger('auditor_id')->nullable();
             $table->foreign('auditor_id')->references('id')->on('users');
 
+            $table->tinyInteger('is_drop')->default(0);
+
             $table->timestamps();
         });
     }
