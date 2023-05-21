@@ -5,6 +5,7 @@ let options = document.querySelectorAll(".select-container .option")
 
 $(document).ready(function() {
     var today = new Date().toISOString().split('T')[0]
+
     $('#input_function_date').attr('min', today)
 
     select.onclick = () => {
@@ -13,7 +14,12 @@ $(document).ready(function() {
     
     options.forEach((e) => {
         e.addEventListener("click", () => {
-            input.value = e.innerText;
+            if($('input[name="user_id"]')){
+                $('input[name="user_id"]').val($(e).children('input[name="user_id_tmp"]').val())
+                input.value = e.innerText
+            }else{
+                input.value = e.innerText
+            }
             selectContainer.classList.remove("active")
             options.forEach((e) => {
                 e.classList.remove("selected")

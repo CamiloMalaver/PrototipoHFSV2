@@ -20,6 +20,16 @@ class AuditorRoutes
             return $next($request);
         }
         
-        return redirect('/');
+        switch(auth()->user()->rol_id){
+            case 1:
+                return redirect()->route('administrador-usuarios');
+                break;
+            case 2:
+                return redirect()->route('auditor-misdocentes');
+                break;
+            case 3:
+                return redirect()->route('docente-misfunciones');
+                break;
+        }
     }
 }

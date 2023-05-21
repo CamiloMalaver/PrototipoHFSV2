@@ -40,6 +40,9 @@ Route::group(['middleware' => 'audit'], function () {
     Route::get('auditor/docentes/gestonar/detallereporte/{id}', [AuditorController::class, 'detalleReporteView'])->name('auditor-detalle-reporte');
     Route::post('auditor/docentes/gestionar/nuevafuncion', [AuditorController::class, 'asignarFuncion'])->name('auditor-asignar-funcion');
     Route::post('auditor/docentes/gestionar/estadofinal', [AuditorController::class, 'asignarEstadoFinal'])->name('auditor-asignar-estado-final');
+    
+    Route::get('auditor/informes', [AuditorController::class, 'informesView'])->name('auditor-informes');
+    Route::post('auditor/informes/generar', [AuditorController::class, 'generarInforme'])->name('auditor-informes-generar');
 });
 
 Route::group(['middleware' => 'doc'], function () {
