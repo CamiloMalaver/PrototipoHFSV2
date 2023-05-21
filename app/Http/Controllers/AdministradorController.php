@@ -10,7 +10,7 @@ use App\Models\TipoFuncion;
 class AdministradorController extends Controller
 {
     public function usuariosView(){
-        $users = User::simplePaginate(6);
+        $users = User::orderBy('id', 'desc')->simplePaginate(6);
         return view('Administrador/usuarios')->with(compact('users'));
     }
     
@@ -28,9 +28,30 @@ class AdministradorController extends Controller
         $docentes = User::where('auditor_id', $id)->get();
         return view('Administrador/asociardocentes')->with(compact('auditor','docentes'));
     }
+    
+    public function usuarioInhabilitar(int $id){
+        $usuario = User::find($id);
+        $usuario->is_drop = 1;
+        $usuario->save();
+        return redirect()->route('administrador-usuarios')->with('message', 'Se ha inhabilitado el usuario');
+    }
+    
+    public function usuarioHabilitar(int $id){
+        $usuario = User::find($id);
+        $usuario->is_drop = 0;
+        $usuario->save();
+        return redirect()->route('administrador-usuarios')->with('message', 'Se ha habilitado el usuario');
+    }
+    
+    public function funcionesSustantivasEliminar(int $id){
+        $tfuncion = TipoFuncion::find($id);
+        $tfuncion->is_drop = 1;
+        $tfuncion->save();
+        return redirect()->back()->with('message', 'Se ha eliminado el tipo de función.');
+    }
 
     public function funcionesSustantivasView(){
-        $funciones = TipoFuncion::paginate(10);
+        $funciones = TipoFuncion::orderBy('id', 'desc')->where('is_drop', 0)->paginate(10);
         return view('Administrador/tiposdefuncion')->with(compact('funciones'));
     }
 

@@ -17,6 +17,12 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
 
+            if(auth()->user()->is_drop){
+                return back()->withErrors([
+                    'email' => 'Usuario inhabilitado.',
+                ]);
+            }
+
             switch ($user->rol_id) {
                 case 1:
                     return redirect('/admin/usuarios');
@@ -29,7 +35,7 @@ class LoginController extends Controller
                     break;
             }
         }
- 
+        
         return back()->withErrors([
             'email' => 'Datos inválidos.',
         ]);

@@ -29,9 +29,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/usuarios/asociardocente', [AdministradorController::class, 'asociarDocente'])->name('administrador-usuarios-asociardocente-exec');
     Route::post('admin/usuarios/editar', [AdministradorController::class, 'editarUsuario'])->name('administrador-usuarios-editar-exec');
     Route::post('admin/usuarios/nuevo/agregar', [AdministradorController::class, 'nuevoUsuario'])->name('administrador-usuarios-nuevo-agregar');
-
-    Route::get('admin/usuarios/funcionessustantivas', [AdministradorController::class, 'funcionesSustantivasView'])->name('administrador-funciones');
-    Route::post('admin/usuarios/funcionessustantivas/nueva', [AdministradorController::class, 'nuevaFuncionSustantiva'])->name('administrador-funciones-nueva');
+    Route::get('admin/usuarios/inhabilitar/{id}', [AdministradorController::class, 'usuarioInhabilitar'])->name('administrador-usuarios-inhabilitar');
+    Route::get('admin/usuarios/habilitar/{id}', [AdministradorController::class, 'usuarioHabilitar'])->name('administrador-usuarios-habilitar');
+    
+    Route::get('admin/funcionessustantivas', [AdministradorController::class, 'funcionesSustantivasView'])->name('administrador-funciones');
+    Route::get('admin/funcionessustantivas/eliminar/{id}', [AdministradorController::class, 'funcionesSustantivasEliminar'])->name('administrador-funciones-eliminar');
+    Route::post('admin/funcionessustantivas/nueva', [AdministradorController::class, 'nuevaFuncionSustantiva'])->name('administrador-funciones-nueva');
 });
 
 Route::group(['middleware' => 'audit'], function () {

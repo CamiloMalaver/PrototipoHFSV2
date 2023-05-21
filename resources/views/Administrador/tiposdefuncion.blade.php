@@ -47,7 +47,7 @@
                 <div class="actions-container">
                     <div class="tooltip">
                         <div class="action">
-                            <img class="icon" src="{{asset('img/bulk/trash.png')}}" alt="">
+                            <a href="{{route('administrador-funciones-eliminar', $funcion->id)}}"><img class="icon" src="{{asset('img/bulk/trash.png')}}" alt=""></a>
                         </div>
                         <span class="tooltiptext">Eliminar</span>
                     </div>

@@ -22,7 +22,7 @@ class AuditorController extends Controller
     public function gestionarDocenteView(int $id){
         $docente = User::where('id', $id)->first();
         $funciones = FuncionSustantiva::with('TipoFuncion')->with('estado')->where('usuario_id', $id)->simplePaginate(8);
-        $tipofuncion = TipoFuncion::all();
+        $tipofuncion = TipoFuncion::where('is_drop', 0)->get();
         foreach($funciones as $funcion) {
             $startTime = $funcion->hora_inicio;
             $endTime = $funcion->hora_final;
