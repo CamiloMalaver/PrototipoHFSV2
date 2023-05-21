@@ -186,31 +186,38 @@ class DocenteController extends Controller
             $pdf->Ln(6);
         }
 
-        $pdf->SetFont('Arial', 'B', 14);
-        $pdf->SetTextColor(6, 40, 61); 
-        $pdf->Cell(40, 10, $this->em('Total general para el rango de fechas dado'));
-        $pdf->Ln();
+        if($grouped){
+            $pdf->SetFont('Arial', 'B', 14);
+            $pdf->SetTextColor(6, 40, 61); 
+            $pdf->Cell(40, 10, $this->em('Total general para el rango de fechas dado'));
+            $pdf->Ln();
 
-        $pdf->SetFont('Arial', '', 14);
-        $pdf->SetTextColor(34, 173, 132);
-        $pdf->Cell(100, 10, "Total horas aprobadas");
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->Cell(40, 10, $tot_approbed);
-        $pdf->Ln();
+            $pdf->SetFont('Arial', '', 14);
+            $pdf->SetTextColor(34, 173, 132);
+            $pdf->Cell(100, 10, "Total horas aprobadas");
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Cell(40, 10, $tot_approbed);
+            $pdf->Ln();
 
-        $pdf->SetTextColor(248, 120, 112); 
-        $pdf->Cell(100, 10, "Total horas rechazadas");
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->Cell(40, 10, $tot_rejected);
-        $pdf->Ln();
+            $pdf->SetTextColor(248, 120, 112);
+            $pdf->Cell(100, 10, "Total horas rechazadas");
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Cell(40, 10, $tot_rejected);
+            $pdf->Ln();
 
-        $pdf->SetTextColor(6, 40, 61); 
-        $pdf->Cell(100, 10, "Total horas no presentadas");
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->Cell(40, 10, $tot_np);
-        $pdf->Ln(16);
+            $pdf->SetTextColor(6, 40, 61);
+            $pdf->Cell(100, 10, "Total horas no presentadas");
+            $pdf->SetTextColor(0, 0, 0);
+            $pdf->Cell(40, 10, $tot_np);
+            $pdf->Ln(16);
+        }else{
+            $pdf->SetFont('Arial', 'B', 14);
+            $pdf->SetTextColor(6, 40, 61); 
+            $pdf->Cell(40, 10, $this->em('No se encontraron funciones para el rango proporcionado'));
+            $pdf->Ln();
+        }
         
-        $pdf->Output('filename.pdf', 'D');
+        $pdf->Output('reporte.pdf', 'D');
     
     }
 
@@ -299,8 +306,7 @@ class DocenteController extends Controller
         return urldecode($word);
     }
 
-    private function totalHours( $startTime,  $endTime)
-    {
+    private function totalHours( $startTime,  $endTime) {
         $startDateTime = Carbon::createFromFormat('H:i:s', $startTime);
         $endDateTime = Carbon::createFromFormat('H:i:s', $endTime);
 

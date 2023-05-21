@@ -24,8 +24,8 @@
                     </div>
                 </div>
             @endforeach
-            {{ $docentes->links() }}
-            </div>
+        </div>
+        {{ $docentes->links() }}
         </div>
     </div>
 @endsection

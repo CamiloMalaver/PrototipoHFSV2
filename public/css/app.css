@@ -938,6 +938,11 @@ body {
     text-align: center;
 }
 
+.file-download-item a:hover {
+    border-radius: 12px;
+    background-color: #22AD847D;
+}
+
 /* Tooltip container */
 .tooltip {
     position: relative;

@@ -18,16 +18,25 @@
                     <span class="user-role">{{ $user->rol->nombre_rol}}</span>
                     <div class="actions-container">
                         @if ($user->rol_id == 2)
-                        <div class="action">
-                            <a href="{{route('administrador-usuarios-asociardocente', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useradd.png')}}" alt="">
+                        <div class="tooltip">
+                            <div class="action">
+                                <a href="{{route('administrador-usuarios-asociardocente', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useradd.png')}}" alt="">
+                            </div>
+                            <span class="tooltiptext">Asignar docentes</span>
                         </div>
-                        @endif                        
-                        <div class="action">
-                            <a href="{{route('administrador-usuarios-editar', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useredit.png')}}" alt=""></a>
+                        @endif     
+                        <div class="tooltip">                   
+                            <div class="action">
+                                <a href="{{route('administrador-usuarios-editar', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useredit.png')}}" alt=""></a>
+                            </div>
+                            <span class="tooltiptext">Editar</span>
                         </div>
                         @if (auth()->user()->id != $user->id)
-                        <div class="action">
-                            <img class="icon" src="{{asset('img/bulk/trash.png')}}" alt="">
+                        <div class="tooltip">
+                            <div class="action">
+                                <a href=""><img class="icon" src="{{asset('img/bulk/trash.png')}}" alt=""></a>
+                            </div>
+                            <span class="tooltiptext">Inhabilitar</span>
                         </div>
                         @endif   
                     </div>

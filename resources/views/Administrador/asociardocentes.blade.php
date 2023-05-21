@@ -48,9 +48,12 @@
                 </div>
                 <span class="user-full-name">{{$doc->nombres}} {{$doc->apellidos}}</span>
                 <div class="actions-container">
-                    <div class="action">
-                        <img class="icon" src="{{asset('img/bulk/trash.png')}}" alt="">
-                    </div>
+                    <div class="tooltip">
+                        <div class="action">
+                            <img class="icon" src="{{asset('img/bulk/trash.png')}}" alt="">
+                        </div>
+                        <span class="tooltiptext">Desvincular</span>
+                    </div> 
                 </div>
             </div>
             @endforeach

@@ -45,8 +45,11 @@
                 </div>
                 <span class="user-full-name">{{$funcion->nombre}}</span>
                 <div class="actions-container">
-                    <div class="action">
-                        <img class="icon" src="{{asset('img/bulk/trash.png')}}" alt="">
+                    <div class="tooltip">
+                        <div class="action">
+                            <img class="icon" src="{{asset('img/bulk/trash.png')}}" alt="">
+                        </div>
+                        <span class="tooltiptext">Eliminar</span>
                     </div>
                 </div>
             </div>

@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Auth;
 class AuditorController extends Controller
 {
     public function misDocentesView(){
-        $docentes = User::where('auditor_id', auth::user()->rol_id)->withCount('funcionsustantiva')->simplePaginate(10);
+        $docentes = User::where('auditor_id', auth::user()->rol_id)->withCount('funcionsustantiva')->simplePaginate(8);
         return view('Auditor/misdocentes')->with(compact('docentes'));
     }
 
     public function gestionarDocenteView(int $id){
         $docente = User::where('id', $id)->first();
-        $funciones = FuncionSustantiva::with('TipoFuncion')->with('estado')->where('usuario_id', $id)->get();
+        $funciones = FuncionSustantiva::with('TipoFuncion')->with('estado')->where('usuario_id', $id)->simplePaginate(8);
         $tipofuncion = TipoFuncion::all();
         foreach($funciones as $funcion) {
             $startTime = $funcion->hora_inicio;

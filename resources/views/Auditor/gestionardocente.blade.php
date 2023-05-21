@@ -102,6 +102,9 @@
             <span class="subtitle josefin-light">Aún no has registrado funciones para este docente.</span>
             @endif
         </div>
+        <div class="tab-container content-container mt-10">
+            {{$funciones->links()}}
+        </div>
     </div>
 </div>
 @endsection
