@@ -31,7 +31,7 @@
                     </a>
                     @endif
                     @if(auth()->user()->rol_id == 2)
-                    <a class="flat-button active-module" href="">
+                    <a class="flat-button active-module" href="{{route('auditor-misdocentes')}}">
                         <img class="icon" src="{{asset('img/bulk/calendartick.png')}}" alt="">
                         <span class="">Docentes</span>
                     </a>
@@ -39,7 +39,7 @@
                         <img class="icon" src="{{asset('img/bulk/clipboardtext.png')}}" alt="">
                         <span class="">Informes</span>
                     </a>
-                    <a class="flat-button" href="">
+                    <a class="flat-button" href="{{route('auditor-ajustes')}}">
                         <img class="icon" src="{{asset('img/bulk/candle.png')}}" alt="">
                         <span class="">Ajustes</span>
                     </a>

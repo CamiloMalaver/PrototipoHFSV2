@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\TipoFuncion;
 use App\Models\FuncionSustantiva;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 use FPDF;
 
 class AuditorController extends Controller
@@ -47,6 +49,10 @@ class AuditorController extends Controller
     public function informesView(){
         $users = User::select('nombres', 'apellidos', 'id')->where('auditor_id', auth()->user()->id)->get();
         return view('Auditor/informes')->with(compact('users'));
+    }
+
+    public function ajustesView(){
+        return view('Auditor/ajustes');
     }
 
     public function generarInforme(Request $request){
@@ -251,6 +257,23 @@ class AuditorController extends Controller
         return redirect()->route('auditor-gestionar-docente', $funcion->usuario_id)->with('message', 'Se ha asignado el nuevo estado a la función.');
     }
 
+    public function ajustesCambiarPassword(Request $request){
+        $user = User::find(auth()->user()->id);
+        $validated = $request->validate([
+            'password' => 'required|confirmed|min:8',
+            'password_actual' => 'required',
+        ]);
+
+        if(!Hash::check($request->password_actual, $user->password)){
+            throw ValidationException::withMessages(['contraseña actual' => 'La contraseña actual no coincide con nuestros registros']);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('auditor-ajustes')->with('message', 'Se ha cambiado la contraseña.');
+    
+    }
     function em($word) {
 
         $word = str_replace("@","%40",$word);

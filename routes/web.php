@@ -43,6 +43,9 @@ Route::group(['middleware' => 'audit'], function () {
     
     Route::get('auditor/informes', [AuditorController::class, 'informesView'])->name('auditor-informes');
     Route::post('auditor/informes/generar', [AuditorController::class, 'generarInforme'])->name('auditor-informes-generar');
+
+    Route::get('auditor/ajustes', [AuditorController::class, 'ajustesView'])->name('auditor-ajustes');
+    Route::post('auditor/ajustes/password', [AuditorController::class, 'ajustesCambiarPassword'])->name('auditor-ajustes-password');
 });
 
 Route::group(['middleware' => 'doc'], function () {
@@ -55,6 +58,7 @@ Route::group(['middleware' => 'doc'], function () {
     Route::post('docente/informes/generar', [DocenteController::class, 'generarInforme'])->name('docente-informes-generar');
     
     Route::get('docente/ajustes', [DocenteController::class, 'ajustesView'])->name('docente-ajustes');
+    Route::post('docente/ajustes/password', [DocenteController::class, 'ajustesCambiarPassword'])->name('docente-ajustes-password');
 });
 
 

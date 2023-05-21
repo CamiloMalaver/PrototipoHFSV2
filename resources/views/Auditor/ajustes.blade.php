@@ -4,7 +4,7 @@
 <div class="module">
     <span class="title">Ajustes</span>
     <div class="tab-container ajustes-container">
-        <form class="form-new-user" action="{{route('docente-ajustes-password')}}" method="POST">
+        <form class="form-new-user" action="{{route('auditor-ajustes-password')}}" method="POST">
             @csrf
             <span class="subtitle">Cambiar contraseña</span>
             <input type="password" name="password_actual" class="input informe-range" placeholder="Contraseña actual" required>

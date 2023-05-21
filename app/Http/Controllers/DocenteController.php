@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FuncionSustantiva;
 use App\Models\Evidencia;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 use FPDF;
 
 class DocenteController extends Controller
@@ -40,9 +43,9 @@ class DocenteController extends Controller
             'descripcion_actividad' => 'required|string|max:400|min:20',
             'observaciones' => 'required|string|max:400|min:20',
             'evidencias' => 'required|array',
-            'evidencias.*' => 'required|file|mimetypes:txt/pdf/doc/docx/jpg/jpeg',
+            'evidencias.*' => 'required|file',
             'evidencias.*' => 'max:2048',
-            'evidencias' => 'max:2048',
+            'evidencias' => 'max:2048|mimetypes:txt/pdf/doc/docx/jpg/jpeg',
         ]);
 
         $funcion = FuncionSustantiva::find($request->funcion_id);
@@ -78,9 +81,6 @@ class DocenteController extends Controller
         ->with('TipoFuncion')
         ->get();
         $grouped = $funciones->groupBy('tipo_funcion_id')->all();
-
-        // dd($grouped);
-        // exit;
 
         $pdf = new FPDF();        
         $pdf->AddPage();
@@ -218,6 +218,24 @@ class DocenteController extends Controller
         }
         
         $pdf->Output('reporte.pdf', 'D');
+    
+    }
+
+    public function ajustesCambiarPassword(Request $request){
+        $user = User::find(auth()->user()->id);
+        $validated = $request->validate([
+            'password' => 'required|confirmed|min:8',
+            'password_actual' => 'required',
+        ]);
+
+        if(!Hash::check($request->password_actual, $user->password)){
+            throw ValidationException::withMessages(['contraseña actual' => 'La contraseña actual no coincide con nuestros registros']);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('docente-ajustes')->with('message', 'Se ha cambiado la contraseña.');
     
     }
 
