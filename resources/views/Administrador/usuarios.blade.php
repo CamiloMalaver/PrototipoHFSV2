@@ -6,7 +6,6 @@
         <span class="title">Usuarios</span>
         <div class="tab-container content-container">
             <div class="users-tools-container">
-                <input type="text" class="input input-search" id="usuarios_input_search" placeholder="Buscar por Nombre">
                 <a class="btn-new-user" href="{{route('administrador-usuarios-nuevo')}}">Nuevo usuario</a>
             </div>
             <div class="card-users-container">
@@ -34,8 +33,8 @@
                     </div>
                 </div>
             @endforeach
-            {{ $users->links() }}
-            </div>
+        </div>
+        {{ $users->links() }}
         </div>
     </div>
 @endsection

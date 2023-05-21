@@ -9,6 +9,7 @@ class FuncionSustantiva extends Model
 {
     use HasFactory;
     protected $table = 'funcion_sustantiva';
+    public $time_difference;
 
     public function tipofuncion()
     {

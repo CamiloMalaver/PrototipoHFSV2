@@ -10,7 +10,7 @@ use App\Models\TipoFuncion;
 class AdministradorController extends Controller
 {
     public function usuariosView(){
-        $users = User::simplePaginate(10);
+        $users = User::simplePaginate(6);
         return view('Administrador/usuarios')->with(compact('users'));
     }
     

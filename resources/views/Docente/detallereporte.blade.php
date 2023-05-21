@@ -2,25 +2,45 @@
 
 @section('module-container')
 <div class="module">
-    <span class="title mb-0">{{$funcion->tipofuncion->nombre}}</span>
-    <div class="tab-container informes-container gap-1">
-        <span class="subtitle">{{date('h:m a', strtotime($funcion->hora_inicio))}} - {{date('h:m a', strtotime($funcion->hora_final))}}</span>
-        <span class="subtitle">{{$funcion->fecha}}</span>
-        <div class="status-badge status{{$funcion->estado->id}}">
-            <span class="text">{{$funcion->estado->nombre}}</span>
+
+    <div class="assoc-docente-title-container">
+        <div class="left-container">
+            <span class="title mb-0">{{$funcion->tipofuncion->nombre}}</span>
+            <span class="subtitle">{{date('h:m a', strtotime($funcion->hora_inicio))}} - {{date('h:m a', strtotime($funcion->hora_final))}}</span>
+            <span class="subtitle">{{$funcion->fecha}}</span>
+        </div>
+        <div class="right-container">
+            <div class="status-badge status{{$funcion->estado->id}}">
+                <span class="text">{{$funcion->estado->nombre}}</span>
+            </div>
+            <div class="form-row right mt-10">
+                <a class="btn-function-action back-action" href="{{route('docente-misfunciones')}}">Regresar</a>
+            </div>
         </div>
     </div>
-    <form class="form-new-user">
-        <div class="tab-container informes-container mt-10">
-            <input type="hidden" name="funcion_id" value="{{$funcion->id}}">
-            <textarea type="text" name="descripcion_actividad" class="input report-textarea-big" placeholder="Descripción de actividad" required></textarea>
-            <textarea type="text" name="observaciones" class="input report-textarea" placeholder="Observaciones"></textarea required>
-            <input type="file" name="evidencias[]" id="evidencias_input" required multiple>
+    <div class="tab-container informes-container mt-10">
+        <div class="card-detail-function mt-10">
+            <span class="subtitle">Descripción de actividad</span>
+            <span class="subtitle josefin-light text-start">{{$funcion->descripcion_actividad}}</span>
+            <span class="subtitle">Observaciones</span>
+            <span class="subtitle josefin-light text-start">{{$funcion->observaciones}}</span>
+            <span class="subtitle">Evidencias</span>
+            <div class="files-container">
+                @foreach($funcion->evidencia as $evidencia)
+                    <div class="file-download-item">
+                        <a class="subtitle josefin-light text-start m-0" href="{{ url('storage/' . $evidencia->url) }}" download>{{$evidencia->nombre_archivo}}</a>
+                        <img class="icon user-profile-pic" src="{{asset('img/bulk/documentdownload.png')}}" alt="">
+                    </div>
+                @endforeach
+            </div>
+            <span class="subtitle">Observaciones auditor</span>
+            @if(is_null($funcion->observaciones_auditor))
+            <span class="subtitle josefin-light text-start">Ninguna</span>
+            @else                
+            <span class="subtitle josefin-light text-start">{{$funcion->observaciones_auditor}}</span>
+            @endif
         </div>
-    </form>
-    @foreach($funcion->evidencia as $evidencia)
-        <a href="{{ url('storage/' . $evidencia->url) }}" download>Download File</a>
-    @endforeach
+    </div>
 </div>
 @endsection
 

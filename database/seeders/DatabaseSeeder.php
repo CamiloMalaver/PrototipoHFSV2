@@ -39,10 +39,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('estado')->insert([
-            'nombre' => 'Aprobado con correcciones',
-        ]);
-
-        DB::table('estado')->insert([
             'nombre' => 'Aprobado',
         ]);
 

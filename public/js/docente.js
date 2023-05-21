@@ -24,10 +24,21 @@ $(document).ready(function(){
         $('#docente_incoming_container').removeClass('d-none')
     })
 
-    $("#evidencias_input").click(function(){
-        var $fileUpload = $("input[type='file']");
-        if (parseInt($fileUpload.get(0).files.length)>2){
-            
+
+    $('#review_function_submit_approbed').click(() => {
+        $('#frm_observaciones').attr('required', false)
+        $('#input_state').val(3)
+        $('#form_review_function').trigger( "submit" )
+    })
+
+    $('#review_function_submit_rejected').click(() => {
+        $('#frm_observaciones').attr('required', true)
+        $('#input_state').val(4)
+        var reportValidity = form[0].reportValidity()
+        if(reportValidity){
+            $('#form_review_function').trigger( "submit" )
         }
     })
+
+
 })

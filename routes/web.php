@@ -37,7 +37,9 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'audit'], function () {
     Route::get('auditor/docentes', [AuditorController::class, 'misDocentesView'])->name('auditor-misdocentes');
     Route::get('auditor/docentes/gestionar/{id}', [AuditorController::class, 'gestionarDocenteView'])->name('auditor-gestionar-docente');
+    Route::get('auditor/docentes/gestonar/detallereporte/{id}', [AuditorController::class, 'detalleReporteView'])->name('auditor-detalle-reporte');
     Route::post('auditor/docentes/gestionar/nuevafuncion', [AuditorController::class, 'asignarFuncion'])->name('auditor-asignar-funcion');
+    Route::post('auditor/docentes/gestionar/estadofinal', [AuditorController::class, 'asignarEstadoFinal'])->name('auditor-asignar-estado-final');
 });
 
 Route::group(['middleware' => 'doc'], function () {
@@ -45,8 +47,10 @@ Route::group(['middleware' => 'doc'], function () {
     Route::get('docente/misfunciones/detallereporte/{id}', [DocenteController::class, 'detalleReporteView'])->name('docente-detalle-reporte');
     Route::get('docente/misfunciones/reportar/{id}', [DocenteController::class, 'reportarFuncionView'])->name('docente-misfunciones-reportar');
     Route::post('docente/misfunciones/reportar/enviar', [DocenteController::class, 'reportarFuncion'])->name('docente-misfunciones-reportar-enviar');
-
+    
     Route::get('docente/informes', [DocenteController::class, 'informesView'])->name('docente-informes');
+    Route::post('docente/informes/generar', [DocenteController::class, 'generarInforme'])->name('docente-informes-generar');
+    
     Route::get('docente/ajustes', [DocenteController::class, 'ajustesView'])->name('docente-ajustes');
 });
 

@@ -25,6 +25,9 @@
                 <input id="input_function_date" type="date" class="input input-form-text" name="fecha_de_funcion" placeholder="Fecha de función" required>
                 <input type="time" class="input input-form-time" name="hora_de_inicio" placeholder="Email docente" required>
                 <input type="time" class="input input-form-time" name="hora_final" placeholder="Email docente" required>
+            </div>
+            <div class="form-row new-function">
+                <input class="input input-form-text" type="text" name="lugar" placeholder="Lugar" maxlength="80" required>
                 <div class="select-container">
                     <div class="select">
                         <input type="text" id="input" placeholder="Tipo de funcion" name="select_function" onfocus="this.blur();" required>
@@ -38,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-row right">
+            <div class="form-row">
                 <button type="submit" class="btn-function-action">Asignar función</button>
             </div>
         </form>
@@ -65,23 +68,38 @@
         <span class="subtitle josefin-bold">Funciones sustantivas asignadas</span>
         <div class="card-users-container">
             @if($funciones)
-                @foreach($funciones as $func)
-                    <div class="user-card">
-                        <div class="profile-icon-container">
-                            <img class="icon user-profile-pic" src="{{asset('img/bulk/autonio.png')}}" alt="">
+            @foreach($funciones as $func)
+            <div class="user-card">
+                <div class="profile-icon-container">
+                    <img class="icon user-profile-pic" src="{{asset('img/bulk/autonio.png')}}" alt="">
+                </div>
+                <span class="user-full-name funct-type">{{$func->tipoFuncion->nombre}}</span>
+                <span class="user-role funct-time">{{$func->lugar}}</span>
+                <span class="user-role funct-time">{{$func->time_difference}} horas</span>
+                <div class="actions-container">
+                    @if($func->estado_id == 2)
+                    <div class="tooltip">
+                        <div class="action">
+                            <a href="{{route('auditor-detalle-reporte', $func->id)}}"><img class="icon" src="{{asset('img/bulk/searchstatus.png')}}" alt=""></a>
                         </div>
-                        <span class="user-full-name funct-type">{{$func->tipoFuncion->nombre}}</span>
-                        <span class="user-role funct-time">{{date('h:m:s a', strtotime($func->hora_inicio))}}</span>
-                        <span class="user-role">{{date('h:m:s a', strtotime($func->hora_final))}}</span>
-                        <div class="actions-container">
-                            <div class="status-badge status{{$func->estado_id}}">
-                                <span class="text">{{$func->estado->nombre}}</span>
-                            </div>
-                        </div>
+                        <span class="tooltiptext">Revisar</span>
                     </div>
-                @endforeach
+                    @else
+                    <div class="tooltip">
+                        <div class="action">
+                            <a href="{{route('auditor-detalle-reporte', $func->id)}}"><img class="icon" src="{{asset('img/bulk/eye.png')}}" alt=""></a>
+                        </div>
+                        <span class="tooltiptext">Ver detalle</span>
+                    </div>
+                    @endif 
+                    <div class="status-badge status{{$func->estado_id}}">
+                        <span class="text">{{$func->estado->nombre}}</span>
+                    </div>
+                </div>
+            </div>
+            @endforeach
             @else
-                <span class="subtitle josefin-light">Aún no has registrado funciones para este docente.</span>    
+            <span class="subtitle josefin-light">Aún no has registrado funciones para este docente.</span>
             @endif
         </div>
     </div>
