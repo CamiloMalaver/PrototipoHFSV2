@@ -56,7 +56,9 @@ class DocenteController extends Controller
             'descripcion_actividad' => 'required|string|max:400|min:20',
             'observaciones' => 'required|string|max:400|min:20',
             'evidencias' => 'required|array',
-            'evidencias.*' => 'mimetypes:pdf/txt/doc/docx/jpg/jpeg|max:2048',
+            'evidencias.*' => 'required|file|mimetypes:txt/pdf/doc/docx/jpg/jpeg',
+            'evidencias.*' => 'max:2048',
+            'evidencias' => 'max:3',
         ]);
 
         $funcion = FuncionSustantiva::find($request->funcion_id);
