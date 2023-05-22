@@ -16,8 +16,6 @@ class AdminRoutes
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
-
         if(Auth()->check() && auth::user()->rol_id == 1){
             return $next($request);
         }
