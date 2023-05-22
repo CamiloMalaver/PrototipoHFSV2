@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{{secure_asset('css/app.css')}}">
         
         <title>Prototipo HFS</title>
@@ -22,7 +23,7 @@
                 <div class="bottom-container">
                     @if(auth()->user()->rol_id == 1)
                     <a class="flat-button {{ request()->route()->getName() === 'administrador-usuarios' ? 'active-module' : '' }}" href="{{route('administrador-usuarios')}}" id="btn_usuarios">
-                        <img class="icon" src="{{secure_asset('img/bulk/people.png')}}" alt="">
+                        <img class="icon" src="{{url('/img/bulk/people.png')}}" alt="">
                         <span class="">Usuarios</span>
                     </a>
                     <a class="flat-button {{ request()->route()->getName() === 'administrador-funciones' ? 'active-module' : '' }}" href="{{route('administrador-funciones')}}" id="btn_funciones">
@@ -32,15 +33,15 @@
                     @endif
                     @if(auth()->user()->rol_id == 2)
                     <a class="flat-button {{ request()->route()->getName() === 'auditor-misdocentes' ? 'active-module' : '' }}" href="{{route('auditor-misdocentes')}}" id="btn_docentes">
-                        <img class="icon" src="{{secure_asset('img/bulk/calendartick.png')}}" alt="">
+                        <i class="fa-duotone fa-user-group"></i>
                         <span class="">Docentes</span>
                     </a>
                     <a class="flat-button {{ request()->route()->getName() === 'auditor-informes' ? 'active-module' : '' }}" href="{{route('auditor-informes')}}" id="btn_informes">
-                        <img class="icon" src="{{secure_asset('img/bulk/clipboardtext.png')}}" alt="">
+                        <i class="fa-solid fa-files"></i>
                         <span class="">Informes</span>
                     </a>
                     <a class="flat-button {{ request()->route()->getName() === 'auditor-ajustes' ? 'active-module' : '' }}" href="{{route('auditor-ajustes')}}" id="btn_ajustes">
-                        <img class="icon" src="{{secure_asset('img/bulk/candle.png')}}" alt="">
+                        <i class="icon fa-solid fa-sliders"></i>
                         <span class="">Ajustes</span>
                     </a>
                     @endif
