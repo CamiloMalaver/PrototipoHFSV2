@@ -11,11 +11,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use FPDF;
-
+ 
 class DocenteController extends Controller
 {
     public function misFuncionesView(){
         $funciones = FuncionSustantiva::with('TipoFuncion', 'estado')->where('usuario_id', auth::user()->id)->get();
+        $has_np = 0;
+        foreach($funciones as $func){
+            if(Carbon::createFromFormat('Y-m-d', $func->fecha) < Carbon::now()->format('Y-m-d') && $func->estado_id == 1){
+                $func->estado_id = 5;
+                $func->save();
+                $has_np = 1;
+            }
+        }
+
+        if($has_np){
+            return redirect()->route('docente-misfunciones');
+        }
+
         return view('Docente/misfunciones')->with(compact('funciones'));
     }
 

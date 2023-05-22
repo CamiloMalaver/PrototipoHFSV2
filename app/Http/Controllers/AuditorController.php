@@ -11,11 +11,26 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use FPDF;
-
+ 
 class AuditorController extends Controller
 {
     public function misDocentesView(){
+        $has_np = 0;
         $docentes = User::where('auditor_id', auth::user()->rol_id)->withCount('funcionsustantiva')->simplePaginate(8);
+        foreach($docentes as $doc){
+            foreach($doc->funcionsustantiva as $func){
+                if(Carbon::createFromFormat('Y-m-d', $func->fecha) < Carbon::now()->format('Y-m-d') && $func->estado_id == 1){
+                    $func->estado_id = 5;
+                    $func->save();
+                    $has_np = 1;
+                }
+            }
+        }
+
+        if($has_np){
+            return redirect()->route('auditor-misdocentes');
+        }
+
         return view('Auditor/misdocentes')->with(compact('docentes'));
     }
 
@@ -23,6 +38,8 @@ class AuditorController extends Controller
         $docente = User::where('id', $id)->first();
         $funciones = FuncionSustantiva::with('TipoFuncion')->with('estado')->where('usuario_id', $id)->simplePaginate(8);
         $tipofuncion = TipoFuncion::where('is_drop', 0)->get();
+        $has_np = 0;
+
         foreach($funciones as $funcion) {
             $startTime = $funcion->hora_inicio;
             $endTime = $funcion->hora_final;
@@ -35,7 +52,17 @@ class AuditorController extends Controller
             $decimalMinutes = $minutesDifference % 60;
 
             $funcion->time_difference = $hoursDifference . '.' . $decimalMinutes;
+            if(Carbon::createFromFormat('Y-m-d', $funcion->fecha) < Carbon::now()->format('Y-m-d') && $funcion->estado_id == 1){
+                $funcion->estado_id = 5;
+                $funcion->save();
+                $has_np = 1;
+            }
         }
+
+        if($has_np){
+            return redirect()->route('auditor-gestionar-docente', $docente->id);
+        }
+        
         return view('Auditor/gestionardocente')->with(compact('docente', 'funciones', 'tipofuncion'));
     }
 
