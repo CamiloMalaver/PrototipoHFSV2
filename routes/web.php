@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'login');
+Route::view('/', 'login')->name('login');
 Route::post('autenticar', [LoginController::class, 'validarInicio'])->name('validarInicio');
 Route::get('salir', [LoginController::class, 'finalizarSesion'])->name('salir');
 
