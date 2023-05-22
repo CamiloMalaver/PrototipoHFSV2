@@ -56,7 +56,7 @@ class DocenteController extends Controller
             'descripcion_actividad' => 'required|string|max:400|min:20',
             'observaciones' => 'required|string|max:400|min:20',
             'evidencias' => 'required|array',
-            'evidencias.*' => 'required|file|mimetypes:txt/pdf/doc/docx/jpg/jpeg',
+            'evidencias.*' => 'required|mimetypes:txt/pdf/doc/docx/jpg/jpeg',
             'evidencias' => 'max:2048',
         ]);
 
