@@ -41,13 +41,13 @@
             @foreach($funciones as $funcion)
             <div class="user-card">
                 <div class="profile-icon-container">
-                    <img class="icon user-profile-pic" src="{{secure_asset('img/bulk/autonio.png')}}" alt="">
+                    <img class="icon user-profile-pic" src="{{secure_asset('img/autonio.png')}}" alt="">
                 </div>
                 <span class="user-full-name">{{$funcion->nombre}}</span>
                 <div class="actions-container">
                     <div class="tooltip">
                         <div class="action">
-                            <a href="{{route('administrador-funciones-eliminar', $funcion->id)}}"><img class="icon" src="{{secure_asset('img/bulk/trash.png')}}" alt=""></a>
+                            <a href="{{route('administrador-funciones-eliminar', $funcion->id)}}"><img class="icon" src="{{secure_asset('img/trash.png')}}" alt=""></a>
                         </div>
                         <span class="tooltiptext">Eliminar</span>
                     </div>

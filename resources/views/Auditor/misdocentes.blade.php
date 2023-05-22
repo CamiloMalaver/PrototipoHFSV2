@@ -10,14 +10,14 @@
             @foreach($docentes as $docente)
                 <div class="user-card">
                     <div class="profile-icon-container">
-                        <img class="icon user-profile-pic" src="{{secure_asset('img/bulk/usersquare.png')}}" alt="">
+                        <img class="icon user-profile-pic" src="{{secure_asset('img/usersquare.png')}}" alt="">
                     </div>
                     <span class="user-full-name">{{ $docente->nombres . ' ' . $docente->apellidos }}</span>
                     <span class="user-role">{{$docente->funcionsustantiva_count}} {{($docente->funcionsustantiva_count != 1) ? 'funciones' : 'función'}}</span>
                     <div class="actions-container">
                     <div class="tooltip">
                         <div class="action">
-                            <a href="{{route('auditor-gestionar-docente', $docente->id)}}"><img class="icon" src="{{secure_asset('img/bulk/personalcard.png')}}" alt=""></a>
+                            <a href="{{route('auditor-gestionar-docente', $docente->id)}}"><img class="icon" src="{{secure_asset('img/personalcard.png')}}" alt=""></a>
                         </div>
                         <span class="tooltiptext">Gestionar</span>
                     </div>

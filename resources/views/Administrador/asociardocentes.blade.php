@@ -44,13 +44,13 @@
             @foreach($docentes as $doc)
             <div class="user-card">
                 <div class="profile-icon-container">
-                    <img class="icon user-profile-pic" src="{{secure_asset('img/bulk/usersquare.png')}}" alt="">
+                    <img class="icon user-profile-pic" src="{{secure_asset('img/usersquare.png')}}" alt="">
                 </div>
                 <span class="user-full-name">{{$doc->nombres}} {{$doc->apellidos}}</span>
                 <div class="actions-container">
                     <div class="tooltip">
                         <div class="action">
-                            <img class="icon" src="{{secure_asset('img/bulk/trash.png')}}" alt="">
+                            <img class="icon" src="{{secure_asset('img/trash.png')}}" alt="">
                         </div>
                         <span class="tooltiptext">Desvincular</span>
                     </div> 

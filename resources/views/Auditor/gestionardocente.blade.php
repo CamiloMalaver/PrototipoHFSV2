@@ -71,7 +71,7 @@
             @foreach($funciones as $func)
             <div class="user-card">
                 <div class="profile-icon-container">
-                    <img class="icon user-profile-pic" src="{{secure_asset('img/bulk/autonio.png')}}" alt="">
+                    <img class="icon user-profile-pic" src="{{secure_asset('img/autonio.png')}}" alt="">
                 </div>
                 <span class="user-full-name funct-type">{{$func->tipoFuncion->nombre}}</span>
                 <span class="user-role funct-time">{{$func->lugar}}</span>
@@ -80,14 +80,14 @@
                     @if($func->estado_id == 2)
                     <div class="tooltip">
                         <div class="action">
-                            <a href="{{route('auditor-detalle-reporte', $func->id)}}"><img class="icon" src="{{secure_asset('img/bulk/searchstatus.png')}}" alt=""></a>
+                            <a href="{{route('auditor-detalle-reporte', $func->id)}}"><img class="icon" src="{{secure_asset('img/searchstatus.png')}}" alt=""></a>
                         </div>
                         <span class="tooltiptext">Revisar</span>
                     </div>
                     @else
                     <div class="tooltip">
                         <div class="action">
-                            <a href="{{route('auditor-detalle-reporte', $func->id)}}"><img class="icon" src="{{secure_asset('img/bulk/eye.png')}}" alt=""></a>
+                            <a href="{{route('auditor-detalle-reporte', $func->id)}}"><img class="icon" src="{{secure_asset('img/eye.png')}}" alt=""></a>
                         </div>
                         <span class="tooltiptext">Ver detalle</span>
                     </div>
