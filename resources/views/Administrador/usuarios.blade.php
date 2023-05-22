@@ -26,7 +26,7 @@
             @foreach($users as $user)
                 <div class="user-card">
                     <div class="profile-icon-container">
-                        <img class="icon user-profile-pic" src="{{asset('img/bulk/usersquare.png')}}" alt="">
+                        <img class="icon user-profile-pic" src="{{secure_asset('img/bulk/usersquare.png')}}" alt="">
                     </div>
                     <span class="user-full-name">{{ $user->nombres . ' ' . $user->apellidos }} {{auth()->user()->id == $user->id ? '(Yo)' : ''}}</span>
                     <span class="user-role">{{ $user->rol->nombre_rol}}</span>
@@ -34,14 +34,14 @@
                         @if ($user->rol_id == 2)
                         <div class="tooltip">
                             <div class="action">
-                                <a href="{{route('administrador-usuarios-asociardocente', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useradd.png')}}" alt="">
+                                <a href="{{route('administrador-usuarios-asociardocente', $user->id)}}"><img class="icon" src="{{secure_asset('img/bulk/useradd.png')}}" alt="">
                             </div>
                             <span class="tooltiptext">Asignar docentes</span>
                         </div>
                         @endif     
                         <div class="tooltip">                   
                             <div class="action">
-                                <a href="{{route('administrador-usuarios-editar', $user->id)}}"><img class="icon" src="{{asset('img/bulk/useredit.png')}}" alt=""></a>
+                                <a href="{{route('administrador-usuarios-editar', $user->id)}}"><img class="icon" src="{{secure_asset('img/bulk/useredit.png')}}" alt=""></a>
                             </div>
                             <span class="tooltiptext">Editar</span>
                         </div>
@@ -49,14 +49,14 @@
                         @if($user->is_drop)
                         <div class="tooltip">
                             <div class="action">
-                                <a href="{{route('administrador-usuarios-habilitar', $user->id)}}"><img class="icon" src="{{asset('img/bulk/usertick.png')}}" alt=""></a>
+                                <a href="{{route('administrador-usuarios-habilitar', $user->id)}}"><img class="icon" src="{{secure_asset('img/bulk/usertick.png')}}" alt=""></a>
                             </div>
                             <span class="tooltiptext">Habilitar</span>
                         </div>
                         @else
                         <div class="tooltip">
                             <div class="action">
-                                <a href="{{route('administrador-usuarios-inhabilitar', $user->id)}}"><img class="icon" src="{{asset('img/bulk/userminus.png')}}" alt=""></a>
+                                <a href="{{route('administrador-usuarios-inhabilitar', $user->id)}}"><img class="icon" src="{{secure_asset('img/bulk/userminus.png')}}" alt=""></a>
                             </div>
                             <span class="tooltiptext">Inhabilitar</span>
                         </div>
@@ -73,5 +73,5 @@
 
 
 @section('js-container')
-    <script src="{{asset('js/docente.js')}}" type="text/javascript"></script>
+    <script src="{{secure_asset('js/docente.js')}}" type="text/javascript"></script>
 @endsection

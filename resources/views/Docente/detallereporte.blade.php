@@ -29,7 +29,7 @@
                 @foreach($funcion->evidencia as $evidencia)
                     <div class="file-download-item">
                         <a class="subtitle josefin-light text-start m-0" href="{{ url('storage/' . $evidencia->url) }}" download>{{$evidencia->nombre_archivo}}</a>
-                        <img class="icon user-profile-pic" src="{{asset('img/bulk/documentdownload.png')}}" alt="">
+                        <img class="icon user-profile-pic" src="{{secure_asset('img/bulk/documentdownload.png')}}" alt="">
                     </div>
                 @endforeach
             </div>
@@ -46,5 +46,5 @@
 
 
 @section('js-container')
-<script src="{{asset('js/docente.js')}}" type="text/javascript"></script>
+<script src="{{secure_asset('js/docente.js')}}" type="text/javascript"></script>
 @endsection

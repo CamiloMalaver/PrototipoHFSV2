@@ -42,5 +42,5 @@
 
 
 @section('js-container')
-<script src="{{asset('js/docente.js')}}" type="text/javascript"></script>
+<script src="{{secure_asset('js/docente.js')}}" type="text/javascript"></script>
 @endsection

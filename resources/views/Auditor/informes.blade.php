@@ -52,5 +52,5 @@
 
 
 @section('js-container')
-<script src="{{asset('js/auditor.js')}}" type="text/javascript"></script>
+<script src="{{secure_asset('js/auditor.js')}}" type="text/javascript"></script>
 @endsection

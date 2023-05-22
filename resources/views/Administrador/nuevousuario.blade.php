@@ -64,5 +64,5 @@
 
 
 @section('js-container')
-    <script src="{{asset('js/administrador.js')}}" type="text/javascript"></script>
+    <script src="{{secure_asset('js/administrador.js')}}" type="text/javascript"></script>
 @endsection
