@@ -22,7 +22,7 @@
                 <div class="bottom-container">
                     @if(auth()->user()->rol_id == 1)
                     <a class="flat-button {{ request()->route()->getName() === 'administrador-usuarios' ? 'active-module' : '' }}" href="{{route('administrador-usuarios')}}" id="btn_usuarios">
-                        <img class="icon" src="{{secure_asset('img/bulk/people.png')}}" alt="">
+                        <img class="icon" src="{{secure_asset('img/people.png')}}" alt="">
                         <span class="">Usuarios</span>
                     </a>
                     <a class="flat-button {{ request()->route()->getName() === 'administrador-funciones' ? 'active-module' : '' }}" href="{{route('administrador-funciones')}}" id="btn_funciones">
