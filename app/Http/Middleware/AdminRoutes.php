@@ -16,20 +16,26 @@ class AdminRoutes
      */
     public function handle(Request $request, Closure $next): Response
     {
+
         if(Auth()->check() && auth::user()->rol_id == 1){
             return $next($request);
         }
         
-        switch(auth()->user()->rol_id){
-            case 1:
-                return redirect()->route('administrador-usuarios');
-                break;
-            case 2:
-                return redirect()->route('auditor-misdocentes');
-                break;
-            case 3:
-                return redirect()->route('docente-misfunciones');
-                break;
+        if(auth()->user()->rol_id){
+            switch (auth()->user()->rol_id) {
+                case 1:
+                    return redirect()->route('administrador-usuarios');
+                    break;
+                case 2:
+                    return redirect()->route('auditor-misdocentes');
+                    break;
+                case 3:
+                    return redirect()->route('docente-misfunciones');
+                    break;
+            }
+        }else{
+            return redirect()->route('login');
         }
+
     }
 }
