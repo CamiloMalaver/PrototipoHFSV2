@@ -21,7 +21,7 @@ class AdminRoutes
             return $next($request);
         }
         
-        if(auth()->user()->rol_id){
+        if(isset(auth()->user()->rol_id)){
             switch (auth()->user()->rol_id) {
                 case 1:
                     return redirect()->route('administrador-usuarios');
