@@ -22,9 +22,18 @@
             @csrf
             <div class="form-row new-function">
                 <input type="hidden" name="docente_id" value="{{$docente->id}}">
-                <input id="input_function_date" type="date" class="input input-form-text" name="fecha_de_funcion" placeholder="Fecha de función" required>
-                <input type="time" class="input input-form-time" name="hora_de_inicio" placeholder="Email docente" required>
-                <input type="time" class="input input-form-time" name="hora_final" placeholder="Email docente" required>
+                <div>
+                    <span class="subtitle">Fecha de función</span>
+                    <input id="input_function_date" type="date" class="input input-form-text" name="fecha_de_funcion" placeholder="Fecha de función" required>
+                </div>
+                <div>
+                    <span class="subtitle">Hora de inicio</span>
+                    <input type="time" class="input input-form-time" name="hora_de_inicio" placeholder="Email docente" required>                    
+                </div>
+                <div>
+                    <span class="subtitle">Hora de inicio</span>
+                    <input type="time" class="input input-form-time" name="hora_final" placeholder="Email docente" required>                          
+                </div>
             </div>
             <div class="form-row new-function">
                 <input class="input input-form-text" type="text" name="lugar" placeholder="Lugar" maxlength="80" required>
