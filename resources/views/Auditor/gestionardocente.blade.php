@@ -31,7 +31,7 @@
                     <input type="time" class="input input-form-time" name="hora_de_inicio" placeholder="Email docente" required>                    
                 </div>
                 <div>
-                    <span class="subtitle">Hora de inicio</span>
+                    <span class="subtitle">Hora final</span>
                     <input type="time" class="input input-form-time" name="hora_final" placeholder="Email docente" required>                          
                 </div>
             </div>
