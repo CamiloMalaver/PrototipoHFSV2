@@ -49,14 +49,14 @@
                         @if($user->is_drop)
                         <div class="tooltip">
                             <div class="action">
-                                <a href="{{route('administrador-usuarios-habilitar', $user->id)}}"><img class="icon" src="{{secure_asset('img/usertick.png')}}" alt=""></a>
+                                <a href="{{route('administrador-usuarios-habilitar', $user->id)}}"><img class="icon" src="{{secure_asset('img/userminus.png')}}" alt=""></a>
                             </div>
                             <span class="tooltiptext">Habilitar</span>
                         </div>
                         @else
                         <div class="tooltip">
                             <div class="action">
-                                <a href="{{route('administrador-usuarios-inhabilitar', $user->id)}}"><img class="icon" src="{{secure_asset('img/userminus.png')}}" alt=""></a>
+                                <a href="{{route('administrador-usuarios-inhabilitar', $user->id)}}"><img class="icon" src="{{secure_asset('img/usertick.png')}}" alt=""></a>
                             </div>
                             <span class="tooltiptext">Inhabilitar</span>
                         </div>
