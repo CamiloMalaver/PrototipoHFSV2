@@ -16,7 +16,7 @@ class AuditorController extends Controller
 {
     public function misDocentesView(){
         $has_np = 0;
-        $docentes = User::where('auditor_id', auth::user()->rol_id)->withCount('funcionsustantiva')->simplePaginate(8);
+        $docentes = User::where('auditor_id', auth::user()->id)->withCount('funcionsustantiva')->simplePaginate(8);
         foreach($docentes as $doc){
             foreach($doc->funcionsustantiva as $func){
                 if(Carbon::createFromFormat('Y-m-d', $func->fecha) < Carbon::now()->format('Y-m-d') && $func->estado_id == 1){
