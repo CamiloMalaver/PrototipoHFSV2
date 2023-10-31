@@ -12,7 +12,7 @@
             <h1 class="login-title">HFS</h1>
             <label class="login-welcome-message">Bienvenido al sistema</label>
             <form class="login-form" action="{{route('validarInicio')}}"  method="POST">
-                @{{ csrf_field() }}
+                {{ csrf_field() }}
                 <div class="input-container">
                     <input class="input-text" type="email" id="login-email" name="email" placeholder="Ingresa tu email" required>
                 </div>
